@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://kit.fontawesome.com/06120bf465.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+  <div id="loginModal" class="modal">
+    <div class=""modal-content>
+      <form id="loginForm">
+        <span class="form-entry">
+        <label for="username"><i class="fa-regular fa-user"></i></label>
+        <input type="text" id="username" name="username" autocomplete="username" required>
+      </span>
+
+          <span class="form-entry">
+        <label for="password"><i class="fa-solid fa-fingerprint"></i></label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+      </span>
+        <span><button type="submit">Log in</button>
+        <a id="createAccount" href="#createAccountModal">create account</a></span>
+      </form>
+    </div>
+  </div>
+  <div id="createAccountModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Create Account</h2>
+      <form id="createAccountForm">
+        <label for="newUsername"><i class="fa-regular fa-user"></i></label>
+        <input type="text" id="newUsername" name="newUsername" autocomplete="username" required>
+        <label for="newPassword"><i class="fa-solid fa-fingerprint"></i></label>
+        <input type="password" id="newPassword" name="newPassword"  autocomplete="password" required>
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="password" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Create Account</button>
+      </form>
+    </div>
+    </div>
+    <script src="js/login.js" type="module"></script>
+  <div class="question-list hidden">
+    <div class="questions"></div>
+  <button id="startRecord">Start Recording</button>
+  <button id="stopRecord" disabled>Stop Recording</button>
+  </div>
+
+  <div id="transcriptionOutput"></div>
+  <script src="https://cdn.jsdelivr.net/npm/wavefile@11.0.0/dist/wavefile.min.js"></script>
+  <script src="js/database.js" type="module"></script>
+  <script src="js/record.js" type="module"></script>
+  <script src="js/script.js" type="module"></script>
+</body>
+</html>
