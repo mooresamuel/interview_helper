@@ -1,0 +1,116 @@
+.login-page {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100vw;
+    background-color: #5892ff;
+}
+
+.login-widget {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px 0 rgba(120, 120, 120, 0.7);
+}
+
+.login-signup {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20%;
+    margin-bottom: 15%;
+}
+.login-button {
+    width: 45%;
+    background: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+#signup {
+    color: blue;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: all 2s;
+}
+.logo {
+    object-fit: contain;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10%;
+    scale: 2;
+    margin-top: 5%;
+    padding: 2%;
+    width: 50%;
+    border-end-end-radius: 10%;
+    border-start-start-radius: 10%; ;
+    background: repeating-linear-gradient(-3deg, #ebfaff, #f9fafc 2px, #e5f0fa 10px, #c1e1fb 3px);
+    margin-bottom: 15%;
+}
+
+.username-input, .confirm-password-input, .email-input {
+    display: flex;
+    width: 90%;
+    padding-bottom: 5%;
+    transition: all 5s;
+}
+
+.password-input {
+    display: flex;
+    width: 90%;
+}
+
+.username-input input, .password-input input, .confirm-password-input input, .email-input input {
+    border: none;
+    display: flex;
+    width: 90%;
+    padding-bottom: 5%;
+    border-bottom: 2px solid #ccc;
+    padding: 5%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10% 10% 0 0;
+}
+
+.login-icon {
+    margin-top: 20%;
+    margin-right: 7%;
+    scale: 2;
+    margin-left: 1%;
+}
+
+#submit {
+    width: 45%;
+    padding: 2% 6% 2% 6%;
+    background: linear-gradient(160deg, #4e87f9, #47a8f7, #4e87f9);
+    border: none;
+    border-radius: 5px;
+    transition: transform 4s;
+    color: white;
+}
+
+#submit:active {
+    transform: translateY(2px);
+}
+
+#accordian1 {
+    width: 100%;
+    margin-left: 10%;
+}

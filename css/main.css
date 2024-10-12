@@ -1,0 +1,91 @@
+.main-screen {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100vw;
+    background-color: #5892ff;
+    overflow-y: none;
+    z-index: 0;
+}
+
+
+.question-box {
+    display: flex;
+    width: 100%;
+    max-height: 70vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px 0 rgba(120, 120, 120, 0.7);
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.restrict-height {
+    /* display: flex; */
+
+    max-height: 40vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.restrict-height button {
+    background-color: transparent;
+    width: 100%;
+}
+.question-text {
+    display: flex;
+    /* height: 10%;
+    width: 100%; */
+}
+
+.btn-check {
+    width: 100%;
+}
+
+.actions {
+    position: relative;
+    display: flex;
+    top: 4%;
+    left: 0;
+    width: 100vw;
+    height: 15vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.action-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    background-color: #5892ff;
+    z-index: 50;
+}
+
+.actions button {
+    /* display: block; */
+    width: 15%;
+    height: 100%;
+    background: none;
+    border: none;
+    /* border-bottom: 2px solid white; */
+    color: white;
+    z-index: 50;
+
+}
+/* .actions button p {
+    font-size: 1.25vw;
+} */
+
+.action i {
+    scale: 2;
+}

@@ -104,9 +104,15 @@ class SQLiteCalls:
         finally:
             conn.close()
     
-    def get_questions(self):
+    def get_questions(self, user_id: int):
         with sqlite3.connect(self.db_path) as conn:
-            df = pd.read_sql_query("SELECT * FROM questions", conn)
+            query = """
+                SELECT q.*
+                FROM questions q
+                LEFT JOIN user_questions uq ON q.question_id = uq.question_id AND uq.user_id = ?
+                WHERE uq.user_id IS NULL
+            """
+            df = pd.read_sql_query(query, conn, params=(user_id,))
         return df
 
     def get_user_questions(self, user_id: int):

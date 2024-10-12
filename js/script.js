@@ -18,5 +18,7 @@ async function fetchAndDisplayData() {
 }
 
 // Call the function to fetch and display data
-fetchAndDisplayData();
+// await fetchAndDisplayData();
+
+
 

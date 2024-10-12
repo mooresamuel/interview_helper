@@ -20,7 +20,10 @@ def add_question():
 
 @app.route('/get_questions', methods=['GET'])
 def load_questions():
-    questions_df = db.get_questions()
+    user_id = request.args.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'Missing user_id parameter'}), 400
+    questions_df = db.get_questions(int(user_id))
     questions_json = questions_df.to_json(orient='records')
     return jsonify(json.loads(questions_json))
 

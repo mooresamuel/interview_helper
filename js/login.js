@@ -1,35 +1,43 @@
-import { get_user_questions } from "./database.js";
+import { loginSuccess } from './main.js';
 
-
-const loginModal = document.getElementById('loginModal');
-const createAccountModal = document.getElementById('createAccountModal');
-const createAccount = document.getElementById('createAccount');
-const createAccountForm = document.getElementById('createAccountForm');
 const loginForm = document.getElementById('loginForm');
+const loginBtn = document.getElementById('submit');
+const accordian1 = document.getElementById('accordian1');
+const emailInput = document.getElementById('email');
+const confirmPassword = document.getElementById('confirm-password');
 
 export let userID;
+let register = false;
 
-createAccount.addEventListener('click', () => {
-    loginModal.style.display = 'none';
-    createAccountModal.style.display = 'block';
+
+
+accordian1.addEventListener('show.bs.collapse', () => {
+    loginBtn.innerText = 'Register';
+    emailInput.disabled = false;
+    confirmPassword.disabled = false;
+    register = !register;
+});
+
+accordian1.addEventListener('hidden.bs.collapse', () => {
+    loginBtn.innerText = 'Log in';
+    emailInput.disabled = true;
+    confirmPassword.disabled = true;
+    register = !register;
+});
+
   
-  });
-  
-  createAccountForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const newUsername = document.getElementById('newUsername').value;
-    const newPassword = document.getElementById('newPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+async function createUser() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
     const email = document.getElementById('email').value;
-  
-    if (newPassword !== confirmPassword) {
+    const confirmPwd = document.getElementById('confirm-password').value;
+    if (password !== confirmPwd) {
         Swal.fire({
-            icon: 'success',
-            title: 'Success',
+            icon: 'error',
+            title: 'Error',
             text: 'Passwords do not match',
           });      return;
-    }
-  
+    } 
     try {
       const response = await fetch('http://127.0.0.1:8001/save_user', {
         method: 'POST',
@@ -37,7 +45,7 @@ createAccount.addEventListener('click', () => {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username: newUsername, password: newPassword, email: email })
+        body: JSON.stringify({ username: username, password: password, email: email })
       });
       const result = await response.json();
       if (response.ok) {
@@ -46,12 +54,11 @@ createAccount.addEventListener('click', () => {
           title: 'Success',
           text: result.message,
         });
-        createAccountModal.style.display = 'none';
-        loginModal.style.display = 'block';
+        loginSuccess();
       } else {
         Swal.fire({
             icon: 'error',
-            title: 'An error occurred while creating the account',
+            title: 'Error',
             text: result.error,
             });
       }
@@ -59,17 +66,20 @@ createAccount.addEventListener('click', () => {
       console.error('Error:', error);
       Swal.fire({
         icon: 'error',
-        title: 'An error occurred while creating the account',
-        text: result.error,
+        title: 'Error',
+        text: error,
       });
     }
-  });
+  }
   
   loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (register) {
+      createUser();
+      return;
+    }
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
     try {
       const response = await fetch('http://127.0.0.1:8001/login', {
         method: 'POST',
@@ -81,16 +91,10 @@ createAccount.addEventListener('click', () => {
       });
       const result = await response.json();
       if (response.ok) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: 'Login successful',
-        });
-        loginModal.style.display = 'none';
-        document.querySelector('.question-list').classList.remove('hidden');
+
         userID = result.id;
         console.log('userID:', userID);
-        get_user_questions();
+        loginSuccess();
       } else {
         Swal.fire({
           icon: 'error',
@@ -107,3 +111,11 @@ createAccount.addEventListener('click', () => {
       });
     }
   });
+
+  const savedUserID = localStorage.getItem('userID');
+  if (savedUserID) {
+      // User is logged in, show the main screen
+        userID = savedUserID;
+        loginSuccess();
+  }
+  
