@@ -1,4 +1,4 @@
-import { removeLibraryQuestion, addQuestion, addLibraryQuestion, removeUserQuestion } from "./database.js";
+import { addUserQuestion, removeLibraryQuestion, addQuestion, addLibraryQuestion, removeUserQuestion } from "./database.js";
 import { updateQuestions } from "./main.js";
 
 const generateQuestions = document.getElementById('generate-questions');
@@ -14,7 +14,7 @@ console.log("actions.js");
 customQuestion.addEventListener('click', () => {
     const question = prompt('Enter your custom question:');
     if (question) {
-        addQuestion(question);
+        addUserQuestion(question);
         updateQuestions();
     }
 });

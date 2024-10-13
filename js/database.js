@@ -7,15 +7,14 @@ let numberOfQuestiosn = 0;
 
 export function addQuestion(newQuestion) {
 
-    fetch('https://samalmoore1.eu.pythonanywhere.com/save_user_question', {
+    fetch('https://samalmoore1.eu.pythonanywhere.com/save_question', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            question: newQuestion,
-            user_id: userID
+            question: newQuestion
         })
       })
       .then(response => response.json())
@@ -26,6 +25,32 @@ export function addQuestion(newQuestion) {
           console.error('Error:', error);
       });
 }
+
+export function addUserQuestion(newQuestion) {
+
+  fetch('https://samalmoore1.eu.pythonanywhere.com/save_user_question', {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          question: newQuestion,
+          user_id: userID
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        userQuestions.push.push({          
+          question: newQuestion,
+          user_id: userID});
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 export function addLibraryQuestion(questionID) {
     const question = userQuestions.find(question => String(question.question_id) === String(questionID));
     if (question) {
