@@ -28,7 +28,7 @@ export function addQuestion(newQuestion) {
 
 export function addUserQuestion(newQuestion) {
 
-  fetch('https://samalmoore1.eu.pythonanywhere.com/save_user_question', {
+  fetch('https://samalmoore1.eu.pythonanywhere.com/add_user_question', {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -58,12 +58,6 @@ export function addLibraryQuestion(questionID) {
     }   
 }
 
-export function addUserQuestion(questionID) {
-    const question = questionLibrary.find(question => String(question.question_id) === String(questionID));
-    if (question) {
-        userQuestions.push(question);
-    }
-}
 
 export function removeUserQuestion(questionID) {
     const index = userQuestions.findIndex(question => String(question.question_id) === String(questionID));
