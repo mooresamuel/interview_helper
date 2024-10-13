@@ -7,14 +7,15 @@ let numberOfQuestiosn = 0;
 
 export function addQuestion(newQuestion) {
 
-    fetch('https://samalmoore1.eu.pythonanywhere.com/save_question', {
+    fetch('https://samalmoore1.eu.pythonanywhere.com/save_user_question', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            question: newQuestion
+            question: newQuestion,
+            user_id: userID
         })
       })
       .then(response => response.json())
