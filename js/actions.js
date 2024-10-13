@@ -15,7 +15,6 @@ customQuestion.addEventListener('click', () => {
     const question = prompt('Enter your custom question:');
     if (question) {
         addUserQuestion(question);
-        updateQuestions();
     }
 });
 

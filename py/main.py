@@ -5,7 +5,8 @@ from transcribe import transcribe_audio
 import json
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+
 
 @app.route('/')
 def hello_world():
@@ -15,8 +16,7 @@ db_config = {
     'database': 'samalmoore1$sqlite',
     'user': 'samalmoore1',
     'password': 'redDog123!!!',
-    'host': 'samalmoore1.mysql.eu.pythonanywhere-services.com',
-    # 'port': 'your_db_port'
+    'host': 'samalmoore1.mysql.eu.pythonanywhere-services.com'
 }
 db = MySQLCalls(db_config)
 
@@ -28,6 +28,11 @@ def transcribe():
 def add_question():
     data = request.get_json()
     return db.save_question(data)
+
+@app.route('/add_user_question', methods=['POST'])
+def add_user_question():
+    data = request.get_json()
+    return db.save_user_question(data)
 
 @app.route('/get_questions', methods=['GET'])
 def load_questions():

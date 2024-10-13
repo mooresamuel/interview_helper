@@ -1,4 +1,5 @@
 import { userID } from "./login.js";
+import { updateQuestions } from "./main.js";
 
 export let userQuestions = [];
 export let questionLibrary = [];
@@ -42,9 +43,10 @@ export function addUserQuestion(newQuestion) {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        userQuestions.push.push({          
+        userQuestions.push({          
           question: newQuestion,
           user_id: userID});
+          updateQuestions();
     })
     .catch(error => {
         console.error('Error:', error);
