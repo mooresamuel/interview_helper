@@ -7,7 +7,7 @@ let numberOfQuestiosn = 0;
 
 export function addQuestion(newQuestion) {
 
-    fetch('http://127.0.0.1:8001/save_question', {
+    fetch('https://samalmoore1.eu.pythonanywhere.com/save_question', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -56,7 +56,7 @@ export function removeLibraryQuestion(questionID) {
 }
 
 export function save_data() {
-fetch('http://127.0.0.1:8001/save_question', {
+fetch('https://samalmoore1.eu.pythonanywhere.com/save_question', {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -77,7 +77,7 @@ fetch('http://127.0.0.1:8001/save_question', {
   
 export async function get_data() {
     try {
-      const response = await fetch(`http://127.0.0.1:8001/get_questions?user_id=${userID}`, {
+      const response = await fetch(`https://samalmoore1.eu.pythonanywhere.com/get_questions?user_id=${userID}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json'
@@ -97,7 +97,7 @@ export async function get_data() {
 
   export async function get_user_questions() {
     try {
-      const response = await fetch(`http://127.0.0.1:8001/get_user_questions?user_id=${userID}`, {
+      const response = await fetch(`https://samalmoore1.eu.pythonanywhere.com/get_user_questions?user_id=${userID}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json'
