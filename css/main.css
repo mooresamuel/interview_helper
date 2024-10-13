@@ -1,4 +1,4 @@
-.main-screen {
+.main-screen, .info-screen, .interview-screen {
     display: flex;
     position: fixed;
     top: 0;
@@ -87,4 +87,19 @@
     border: none;
     color: white;
     z-index: 50;
+}
+
+#info-panel, #interview-panel {
+    display: flex;
+    width: 100%;
+    max-height: 65vh;
+    height: 65vh;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px 0 rgba(120, 120, 120, 0.7);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    --bs-accordion-body-padding-x: 0.25rem;
 }

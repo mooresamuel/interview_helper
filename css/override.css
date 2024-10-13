@@ -3,3 +3,17 @@
     --bs-accordion-btn-padding-x: 0;
     text-align: left;
 }
+
+.hidden {
+    display: none;
+}  
+.checked {
+    background-color: #d3d3d3; /* Example: change background color */
+    color: #000; /* Example: change text color */
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    color: #9393ff;
+    background-color: rgba(255, 255, 0, 0.3);
+    border: none;
+}
