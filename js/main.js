@@ -8,16 +8,17 @@ const mainScreen = document.getElementById('main-screen');
 const userQuestionsWindow = document.getElementById('user-questions-window');
 const questionLibraryWindow = document.getElementById('question-library-window');
 const actions = document.getElementById('actions');
+const moreActions = document.getElementById('more-actions');
 
 export function updateQuestions() {
     console.log("user questiosn: ", userQuestions);
     console.log("question library: ", questionLibrary);
-    if (userQuestions.length > 0) {
+    if (userQuestions && userQuestions.length > 0) {
         userQuestionsWindow.innerHTML = '';
     } else {
-        userQuestionsWindow.innerHTML = '<p>No questions added yet, import some from the Library!</p>';
+        userQuestionsWindow.innerHTML = '<p>No questions added yet, transfer some from the Library!</p>';
     }
-    if (questionLibrary.length > 0) {
+    if (questionLibrary && questionLibrary.length > 0) {
         questionLibraryWindow.innerHTML = '';
     } else {
         questionLibraryWindow.innerHTML = '<p>No questions available in the Library, ask the assitant to generate some!</p>';}
@@ -25,8 +26,8 @@ export function updateQuestions() {
         console.log("question: ", question.question_text);
 
         userQuestionsWindow.innerHTML += `
-            <input type="checkbox" class="btn-check" id="${question.question_id}" autocomplete="off">
-            <label class="btn " for="${question.question_id}">${question.question_text}</label>        
+            <input type="checkbox" class="butt btn-check butt" id="${question.question_id}" autocomplete="off">
+            <label class="butt btn" for="${question.question_id}">${question.question_text}</label>        
             `;
         }
     for (const question of questionLibrary) {
@@ -34,7 +35,7 @@ export function updateQuestions() {
 
         questionLibraryWindow.innerHTML += `
             <input type="checkbox" class="btn-check" id="${question.question_id}" autocomplete="off">
-            <label class="btn " for="${question.question_id}">${question.question_text}</label>        
+            <label class="btn butt" for="${question.question_id}">${question.question_text}</label>        
             `;
     }
 }
@@ -51,6 +52,9 @@ function launchMainScreen() {
     // mainScreen.style.display = 'block';
     mainScreen.classList.remove('hidden');
     actions.classList.remove('hidden');
+    moreActions.classList.remove('hidden');
+    actions.classList.add('animate__animated', 'animate__fadeInRight');
+    moreActions.classList.add('animate__animated', 'animate__fadeInRight');
     mainScreen.classList.add('animate__animated', 'animate__fadeInDown');
 }
 

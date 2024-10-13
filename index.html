@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="css/main.css">
-
   <link rel="stylesheet" href="css/styles.css">
-    <!-- sweetalert  -->
+  <!-- sweetalert  -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <!-- fontawesome -->
   <script src="https://kit.fontawesome.com/06120bf465.js" crossorigin="anonymous"></script>
   <!-- animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <!-- bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="css/override.css">
   
 </head>
 <body>
@@ -26,7 +26,6 @@
           <div class="col-1 col-md-2 col-lg-4"></div>
           <div class="col-10 col-md-8 col-lg-4">
             <div class="login-widget animate__animated animate__fadeInDown" id="login-widget">
-
               <form id="loginForm" class="login-form">
                 <div class="logo">
                   <span >M<i class="fa-brands fa-superpowers"></i>CK</span> 
@@ -35,12 +34,10 @@
                   <i class="fa-regular fa-user login-icon"></i>
                   <input type="text" id="username" name="username" placeholder="username" required>
                 </div>
-
                 <div class="password-input">
                   <i class="fa-solid fa-fingerprint login-icon"></i>
                   <input type="password" id="password" name="password" placeholder="password" required>
                 </div>
-
                 <div id="accordian1" class="accordion-collapse collapse">
                   <div id="accordian2" class="confirm-password-input">
                     <i class="fa-solid fa-fingerprint login-icon"></i>
@@ -52,7 +49,6 @@
                   </div>
                 </div>
                 <div class="login-signup accordian">
-
                   <button id="signup" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#accordian1" aria-controls="panelsStayOpen-collapseOne"class="login-button accordian-header">Sign up</button>
                   <button type="submit" id="submit">Log in</button>
                 </div>
@@ -63,7 +59,8 @@
       </div>
     </div>
 
-    <!-- sweetalert2 -->
+  <!-- sweetalert2 -->
+  <div id="main-page">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
   <div class="actions hidden" id="actions">
@@ -72,10 +69,24 @@
         <div class=" col-md-1 col-lg-2"></div>
         <div class="col-12 col-md-10 col-lg-8">
           <div class="action-buttons">
-            <button id="generete-questions"><i class="fa-solid fa-brain"></i><p>Generate</p></button>
-            <button id="delete-questions"><i class="fa-solid fa-trash"></i><p>Delete</p></button>
-            <button id="import-questions"><i class="fa-solid fa-file-import"></i><p>Import</p></button>
-            <button id="play"><i class="fa-solid fa-play"></i><p>Interview</p></button>
+            <button id="logout"><i class="fa-solid fa-arrow-right-from-bracket fa-2xl"></i><p>Logout</p></button>
+            <button id="custom-question"><i class="fa-solid fa-plus fa-2xl"></i><p>Custom</p></button>
+            <button id="user-info"><i class="fa-solid fa-info fa-2xl"></i><p>Info</p></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="more-actions hidden" id="more-actions">
+    <div class="container">
+      <div class="row">
+        <div class=" col-md-1 col-lg-2"></div>
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="action-buttons">
+            <button id="generete-questions"><i class="fa-solid fa-brain fa-2xl"></i><p>Generate</p></button>
+            <button id="transfer-questions"><i class="fa-solid fa-right-left fa-2xl"></i></i><p>Transfer</p></button>
+            <button id="play"><i class="fa-solid fa-play fa-2xl"></i><p>Interview</p></button>
           </div>
         </div>
       </div>
@@ -83,7 +94,6 @@
   </div>
 
   <div class="main-screen hidden" id="main-screen">
-
     <div class="container">
       <div class="row">
         <div class="col-1 col-md-2 col-lg-4"></div>
@@ -93,13 +103,12 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Your Saved Questions
+                    Saved Questions
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#question-accordian">
                   <div class="accordion-body">
                     <div class="restrict-height" id="user-questions-window">
-                      You have no saved questions, add some from the library!
                     </div>
                   </div>
                 </div>
@@ -107,13 +116,12 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Question Library
+                    Library
                   </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#question-accordian">
                   <div class="accordion-body">
                     <div class="restrict-height" id="question-library-window">
-                      There are no questions left in the library, try generate some!
                     </div>
                   </div>
                 </div>
@@ -127,8 +135,8 @@
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#question-accordian">
                   <div class="accordion-body">
                     <div class="restrict-height" id="generated-questions-window">
-                      There are no generated questions, ask the assistant to generate some!
-                    </div>
+                      No questions here yet, click on the generate button to add questions!
+                   </div>
                   </div>
                 </div>
               </div>
@@ -138,8 +146,9 @@
       </div>
     </div>
   </div>
-
+  </div>
   <div id="transcriptionOutput"></div>
+  <!-- WAV encoder -->
   <script src="https://cdn.jsdelivr.net/npm/wavefile@11.0.0/dist/wavefile.min.js"></script>
   <script src="js/login.js" type="module"></script>
   <script src="js/actions.js" type="module"></script>
@@ -148,5 +157,5 @@
   <script src="js/script.js" type="module"></script>
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>

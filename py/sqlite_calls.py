@@ -85,9 +85,10 @@ class SQLiteCalls:
                 INSERT INTO questions (question_text)
                 VALUES (?)
             """, (question_text,))
+            question_id = cursor.lastrowid
             conn.commit()
             conn.close()
-            return jsonify({'message': 'Question saved successfully'}), 200
+            return jsonify({'message': 'Question saved successfully', 'question_id': question_id}), 200
         except Exception as e:
             print(f"Error: {e}")  # Print the error to the server logs
             return jsonify({'error': 'Internal Server Error'}), 500

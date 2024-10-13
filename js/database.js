@@ -3,10 +3,46 @@ import { userID } from "./login.js";
 export let userQuestions = [];
 export let questionLibrary = [];
 
+let numberOfQuestiosn = 0;
+
+export function addQuestion(newQuestion) {
+
+    fetch('http://127.0.0.1:8001/save_question', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            question: newQuestion
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+}
+export function addLibraryQuestion(questionID) {
+    const question = userQuestions.find(question => String(question.question_id) === String(questionID));
+    if (question) {
+        questionLibrary.push(question);
+    }   
+}
+
 export function addUserQuestion(questionID) {
     const question = questionLibrary.find(question => String(question.question_id) === String(questionID));
     if (question) {
         userQuestions.push(question);
+    }
+}
+
+export function removeUserQuestion(questionID) {
+    const index = userQuestions.findIndex(question => String(question.question_id) === String(questionID));
+    if (index !== -1) {
+        userQuestions.splice(index, 1);
     }
 }
 
@@ -48,7 +84,7 @@ export async function get_data() {
         }
       });
       if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
+       return ;
       }
       const data = await response.json();
       questionLibrary = data;
@@ -68,7 +104,7 @@ export async function get_data() {
         }
       });
       if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
+        return;
       }
       const data = await response.json();
       userQuestions = data;

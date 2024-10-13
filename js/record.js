@@ -7,7 +7,7 @@ const transcriptionOutput = document.getElementById('transcriptionOutput'); // O
 let stream;
 
 // Start recording
-startRecordBtn.addEventListener('click', async () => {
+    startRecordBtn.addEventListener('click', async () => {
   try {
     stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream);
@@ -19,8 +19,6 @@ startRecordBtn.addEventListener('click', async () => {
       }
     };
 
-
-    // When recording is stopped
     mediaRecorder.onstop = async () => {
       try {
         const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
@@ -35,17 +33,11 @@ startRecordBtn.addEventListener('click', async () => {
         const formData = new FormData();
         formData.append('file', pcmWavBlob, 'recording.wav'); // Append audio as 'file'
 
-        // Play back the recorded audio
-        // const audioUrl = URL.createObjectURL(pcmWavBlob);
-        // audioPlayback.src = audioUrl;
-        // audioPlayback.play();
-
-        // Send the audio file to the Flask API via POST request
         fetch('http://127.0.0.1:8001/transcribe', {
             method: 'POST',
             body: formData,
             headers: {
-              'Accept': 'application/json' // Send the FormData containing the audio file
+              'Accept': 'application/json'
             }
         })
         .then(response => response.json())

@@ -1,4 +1,4 @@
-import { removeLibraryQuestion, addUserQuestion } from "./database.js";
+import { removeLibraryQuestion, addQuestion, addLibraryQuestion, removeUserQuestion } from "./database.js";
 import { updateQuestions } from "./main.js";
 
 const generateQuestions = document.getElementById('generate-questions');
@@ -7,20 +7,56 @@ const importQuestions = document.getElementById('import-questions');
 const play = document.getElementById('play');
 const userQuestionsWindow = document.getElementById('user-questions-window');
 const questionLibraryWindow = document.getElementById('question-library-window');
+const customQuestion = document.getElementById('custom-question');
 
 console.log("actions.js");  
 
-importQuestions.addEventListener('click', () => {
-    const buttons = questionLibraryWindow.querySelectorAll('.btn-check');
-    console.log("clcik: ");
-    buttons.forEach(button => {
-        if (button.checked) {
-            console.log(button);
-            // userQuestionsWindow.innerHTML += question.nextElementSibling.outerHTML;
-            addUserQuestion(button.id);
-            removeLibraryQuestion(button.id);
-            updateQuestions();
-            // console.log("question: ", question);
-        }
-    });
+customQuestion.addEventListener('click', () => {
+    const question = prompt('Enter your custom question:');
+    if (question) {
+        addQuestion(question);
+        updateQuestions();
+    }
 });
+
+// deleteQuestions.addEventListener('click', () => {
+//     const buttons = userQuestionsWindow.querySelectorAll('.btn-check');
+//     let matched = 0;
+//     buttons.forEach(button => {
+//         if (button.checked) {
+//             addLibraryQuestion(button.id);
+//             removeUserQuestion(button.id);
+//             updateQuestions();
+//             matched++;
+//         }
+//     });
+//     if (matched === 0) {
+//         Swal.fire({
+//             icon: 'error',
+//             title: 'Error',
+//             text: 'No questions selected, choose some questions to delete!',
+//         });
+//     }
+// });
+
+// importQuestions.addEventListener('click', () => {
+//     const buttons = questionLibraryWindow.querySelectorAll('.btn-check');
+//     let matched = 0;
+//     console.log("clcik: ");
+//     buttons.forEach(button => {
+//         if (button.checked) {
+//             console.log(button);
+//             addUserQuestion(button.id);
+//             removeLibraryQuestion(button.id);
+//             updateQuestions();
+//             matched++;
+//         }
+//     });
+//     if (matched === 0) {
+//         Swal.fire({
+//             icon: 'error',
+//             title: 'Error',
+//             text: 'No questions selected, choose some questions to import!',
+//         });
+//     }
+// });

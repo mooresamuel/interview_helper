@@ -1,0 +1,5 @@
+
+.butt {
+    --bs-accordion-btn-padding-x: 0;
+    text-align: left;
+}

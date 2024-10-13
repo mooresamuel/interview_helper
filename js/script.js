@@ -2,6 +2,12 @@ import { get_data, get_user_questions } from './database.js';
 import { userID } from './login.js';
 
 const questions = document.querySelector('.questions');
+const logout = document.getElementById('logout');
+
+logout.addEventListener('click', () => {
+  localStorage.removeItem('userID');
+  document.getElementById('main-page').classList.add('animate__animated', 'animate__hinge');
+});
 
 // Function to fetch and display data
 async function fetchAndDisplayData() {
