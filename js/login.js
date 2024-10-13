@@ -39,7 +39,7 @@ async function createUser() {
           });      return;
     } 
     try {
-      const response = await fetch('http://127.0.0.1:8001/save_user', {
+      const response = await fetch('https://samalmoore1.eu.pythonanywhere.com/save_user', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -81,7 +81,7 @@ async function createUser() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     try {
-      const response = await fetch('http://127.0.0.1:8001/login', {
+      const response = await fetch('https://samalmoore1.eu.pythonanywhere.com/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

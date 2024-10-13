@@ -1,13 +1,20 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from sqlite_calls import SQLiteCalls
+from MySQLcalls import MySQLCalls
 from transcribe import transcribe_audio
 import json
 
 app = Flask(__name__)
 CORS(app)
 
-db = SQLiteCalls() 
+db_config = {
+    'database': 'samalmoore1$sqlite',
+    'user': 'samalmoore1',
+    'password': 'redDog123!!!',
+    'host': 'samalmoore1.mysql.eu.pythonanywhere-services.com',
+    # 'port': 'your_db_port'
+}
+db = MySQLCalls(db_config) 
 
 @app.route('/transcribe', methods=['POST'])
 def transcribe():

@@ -1,20 +1,18 @@
-import sqlite3
+import mysql.connector
 import json
 from flask import request, jsonify
 
 import pandas as pd
 
 
-class SQLiteCalls:
-    def __init__(
-            self,
-            db_path="sqlite.db"
-    ):
-        self.db_path = db_path
+class MySQLCalls:
+    def __init__(self, db_config):
+        self.db_config = db_config
         self.setup_database()
 
     def setup_database(self):
-        conn = sqlite3.connect(self.db_path)
+        conn = mysql.connector.connect(**self.db_config)
+        cursor = conn.cursor()
 
         # cursor = conn.cursor()
         # cursor.execute('DROP TABLE IF EXISTS chat_history')
@@ -69,6 +67,7 @@ class SQLiteCalls:
             );
         """)
         conn.commit()
+        cursor.close()
         conn.close()
 
     def save_question(self, data):
