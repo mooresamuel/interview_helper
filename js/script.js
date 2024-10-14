@@ -77,6 +77,7 @@ userInfoButton.addEventListener('click', () => {
 });
 
 logout.addEventListener('click', () => {
+  document.querySelector('.goodbye').classList.remove('hidden');
   localStorage.removeItem('userID');
   document.getElementById('main-page').classList.add('animate__animated', 'animate__hinge');
 });
@@ -99,19 +100,19 @@ async function fetchAndDisplayData() {
 // await fetchAndDisplayData();
 
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const checkboxes = document.querySelectorAll('.butt.btn-check');
+// document.addEventListener('DOMContentLoaded', (event) => {
+//     const checkboxes = document.querySelectorAll('.butt.btn-check');
 
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', (e) => {
-            const label = document.querySelector(`label[for="${checkbox.id}"]`);
-            if (checkbox.checked) {
-                // Add your logic here when the checkbox is checked
-                label.classList.add('checked'); // Example: add a class
-            } else {
-                // Add your logic here when the checkbox is unchecked
-                label.classList.remove('checked'); // Example: remove a class
-            }
-        });
-    });
-});
+//     checkboxes.forEach(checkbox => {
+//         checkbox.addEventListener('change', (e) => {
+//             const label = document.querySelector(`label[for="${checkbox.id}"]`);
+//             if (checkbox.checked) {
+//                 // Add your logic here when the checkbox is checked
+//                 label.classList.add('checked'); // Example: add a class
+//             } else {
+//                 // Add your logic here when the checkbox is unchecked
+//                 label.classList.remove('checked'); // Example: remove a class
+//             }
+//         });
+//     });
+// });

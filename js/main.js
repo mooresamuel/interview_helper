@@ -16,7 +16,7 @@ export function updateQuestions() {
     if (userQuestions && userQuestions.length > 0) {
         userQuestionsWindow.innerHTML = '';
     } else {
-        userQuestionsWindow.innerHTML = '<p>No questions added yet, move some from the Library!</p>';
+        userQuestionsWindow.innerHTML = '<p>No questions added yet, try some common questions or generate customized ones!</p>';
     }
     if (questionLibrary && questionLibrary.length > 0) {
         questionLibraryWindow.innerHTML = '';
@@ -62,7 +62,7 @@ export async function loginSuccess () {
     loginWidget.classList.remove('animate__animated', 'animate__fadeInDown');
     loginWidget.classList.add('animate__animated', 'animate__backOutDown');
     launchMainScreen();
-    localStorage.setItem('userID', userID);
+
     loginWidget.addEventListener('animationend', () => {
         loginPage.style.display = 'none';
 

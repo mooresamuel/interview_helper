@@ -33,3 +33,12 @@
 :not(.btn-check) + .btn:active:not(:last-of-type) {
     border-bottom: 1px solid rgba(0, 0, 255, 0.175);
 }
+
+.flex-end {
+    align-self: flex-end;
+    margin-right: 2%;
+}
+
+.legend.fa-solid {
+    color: #a0a0ff
+}

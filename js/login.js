@@ -9,6 +9,14 @@ const confirmPassword = document.getElementById('confirm-password');
 export let userID;
 let register = false;
 
+const savedUserID = localStorage.getItem('userID');
+const rememberMe = document.getElementById('remember-me');
+
+if (rememberMe.checked || savedUserID) {
+    console.log('checkbox', rememberMe);
+      userID = savedUserID;
+      loginSuccess();
+}
 
 
 accordian1.addEventListener('show.bs.collapse', () => {
@@ -52,10 +60,13 @@ async function createUser() {
         Swal.fire({
           icon: 'success',
           title: 'Success',
-          text: result.message,
+          text: "Welcome to Mock! Please check out the information section for details on how the app works and to customize your search.",
         });
         userID = result.user_id;
         console.log('userID:', userID);
+        if (rememberMe.checked) {
+          localStorage.setItem('userID', userID);
+        }
         loginSuccess();
       } else {
         Swal.fire({
@@ -96,6 +107,9 @@ async function createUser() {
 
         userID = result.id;
         console.log('userID:', userID);
+        if (rememberMe.checked) {
+          localStorage.setItem('userID', userID);
+        }
         loginSuccess();
       } else {
         Swal.fire({
@@ -114,10 +128,4 @@ async function createUser() {
     }
   });
 
-  const savedUserID = localStorage.getItem('userID');
-  if (savedUserID) {
-      // User is logged in, show the main screen
-        userID = savedUserID;
-        loginSuccess();
-  }
   

@@ -34,3 +34,20 @@ body {
 .hidden {
     display: none;
 }
+
+.goodbye {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: max(16px, 3vw);
+    height: 100vh;
+    width: 100vw;
+    background-color: #5892ff;
+    overflow-y: none;
+    z-index: 0;
+}

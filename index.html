@@ -18,6 +18,11 @@
   <link rel="stylesheet" href="css/override.css">
   
 </head>
+<div class="goodbye hidden">
+  <p>Bye bye now <i class="fa-regular fa-hand"></i></p>
+  <p>Thanks for using <span >M<i class="fa-brands fa-superpowers"></i>CK</span> and</p>
+  <p>good luck with your interview! <i class="fa-regular fa-thumbs-up"></i></p>
+</div>
 <body>
 
     <div class="login-page" id="login-page">
@@ -51,9 +56,16 @@
                 <div class="login-signup accordian">
                   <button id="signup" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#accordian1" aria-controls="panelsStayOpen-collapseOne"class="login-button accordian-header">Sign up</button>
                   <button type="submit" id="submit">Log in</button>
+
+                </div>
+                <div class="form-check form-check-reverse flex-end">
+                  <input class="form-check-input" type="checkbox" value="" id="remember-me">
+                  <label class="form-check-label" for="remember-me">
+                    Remember me
+                  </label>
                 </div>
               </form>
-            </div>
+            </div>  
           </div>  
         </div>
       </div>
@@ -69,9 +81,9 @@
         <div class=" col-md-1 col-lg-2"></div>
         <div class="col-12 col-md-10 col-lg-8">
           <div class="action-buttons">
-            <button id="logout"><i class="fa-solid fa-arrow-right-from-bracket fa-2xl"></i><p>Logout</p></button>
-            <button id="custom-question"><i class="fa-solid fa-plus fa-2xl"></i><p>Custom</p></button>
-            <button id="user-info"><i class="fa-solid fa-info fa-2xl"></i><p>Info</p></button>
+            <button id="logout"><i class="fa-solid fa-arrow-right-from-bracket fa-2xl"></i><p></p></button>
+            <button id="custom-question"><i class="fa-solid fa-plus fa-2xl"></i><p></p></button>
+            <button id="user-info"><i class="fa-solid fa-info fa-2xl"></i><p></p></button>
           </div>
         </div>
       </div>
@@ -84,9 +96,9 @@
         <div class=" col-md-1 col-lg-2"></div>
         <div class="col-12 col-md-10 col-lg-8">
           <div class="action-buttons">
-            <button id="generete-questions"><i class="fa-solid fa-brain fa-2xl"></i><p>Generate</p></button>
-            <button id="transfer-questions"><i class="fa-solid fa-right-left fa-2xl"></i></i><p>Transfer</p></button>
-            <button id="play"><i class="fa-solid fa-play fa-2xl"></i><p>Interview</p></button>
+            <button id="generete-questions"><i class="fa-solid fa-brain fa-2xl"></i><p></p></button>
+            <button id="transfer-questions"><i class="fa-solid fa-right-left fa-2xl"></i><p></p></button>
+            <button id="play"><i class="fa-solid fa-play fa-2xl"></i><p></p></button>
           </div>
         </div>
       </div>
@@ -106,7 +118,7 @@
                     Saved Questions
                   </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#question-accordian">
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#question-accordian">
                   <div class="accordion-body">
                     <div class="restrict-height" id="user-questions-window">
                     </div>
@@ -116,7 +128,7 @@
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Library
+                    Common Questions
                   </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#question-accordian">
@@ -154,7 +166,74 @@
         <div class="col-1 col-md-2 col-lg-4"></div>
         <div class="col-10 col-md-8 col-lg-4">
           <div class="info-panel" id="info-panel">
-
+            <h1 class="display-6 text-center">Welcome to <span class="no-wrap">M<i class="fa-brands fa-superpowers"  style="color: #74C0FC;"></i>CK</span></h1> 
+            <p class="center-blue">interview practice buddy</p>
+            <br>
+            Mock has been developed to help you prepare and gain confidence for interviews. 
+            You can generate questions, save them, and even mock interview yourself.
+            <br>
+            <br>
+            Practicing for interviews can be awkward and uncomfortable, but is vitally important to making a good impression. With Mock, you can practice in the comfort and privacy of your own home.
+            <br>
+            <br>
+            The more details your provide, the better Mock works so please fill in the details section at the end of this form.
+            <br>
+            <br>
+            These are the functions Mock provides:
+            <br>
+            <br>
+            <div class="bg-shadow">
+              <div class="container-fluid">
+                <div class="row"></div>
+                  <p class="legend">
+                    <div class="col-12">
+                      <i class="fa-solid fa-info fa-xl"  style="color: #74C0FC;"></i>
+                        Show / hide this screen
+                    </div>
+                  </p>
+                </div>
+                <div class="row">
+                  <p class="legend">
+                    <div class="col-12">
+                      <i class="fa-solid fa-brain fa-xl"  style="color: #74C0FC;"></i>
+                        Generate new questions
+                    </div>
+                  </p>
+                </div>
+                <div class="row">
+                  <p class="legend">
+                    <div class="col-12">
+                      <i class="fa-solid fa-plus fa-xl"  style="color: #74C0FC;"></i>
+                        Create custom questions
+                    </div>
+                  </p>
+                </div>
+                <div class="row">
+                  <p class="legend">
+                    <div class="col-12">
+                      <i class="fa-solid fa-right-left fa-xl"  style="color: #74C0FC;"></i>
+                        Save or remove questions
+                    </div>
+                  </p>
+                </div>
+                <div class="row">
+                  <p class="legend">
+                    <div class="col-12">
+                      <i class="fa-solid fa-play fa-xl"  style="color: #74C0FC;"></i>
+                        Mock interview
+                    </div>
+                  </p>
+                </div>
+                <div class="row">
+                  <p class="legend">
+                    <div class="col-12">
+                      <i class="fa-solid fa-arrow-right-from-bracket fa-xl" style="color: #74C0FC;"></i>
+                        Log out
+                    </div>
+                  </p>
+                </div>
+              </div>
+            </div> 
           </div>
         </div>
       </div>
