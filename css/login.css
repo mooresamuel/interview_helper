@@ -106,6 +106,19 @@
     color: white;
 }
 
+#submit-details {
+    position: relative;
+    left: 55%;
+    width: 45%;
+    padding: 2% 6% 2% 6%;
+    background: linear-gradient(160deg, #4e87f9, #47a8f7, #4e87f9);
+    border: none;
+    border-radius: 5px;
+    transition: transform 4s;
+    color: white;
+    justify-self: right;
+}
+
 #submit:active {
     transform: translateY(2px);
 }

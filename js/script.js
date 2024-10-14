@@ -11,6 +11,7 @@ const playButton = document.getElementById('play');
 
 let infoShowing = false;
 let interviewShowing = false;
+let activescreen = mainScreen;
 
 function hideMain(direction) {
   mainScreen.classList.remove('animate__animated', 'animate__fadeInUp');
@@ -22,6 +23,7 @@ function showMain(direction) {
   mainScreen.classList.remove('animate__animated', 'animate__fadeOutDown');
   mainScreen.classList.remove('animate__animated', 'animate__fadeOutUp');
   mainScreen.classList.add('animate__animated', direction);
+  activescreen = mainScreen;
 }
 
 function hideInfo() {
@@ -33,6 +35,7 @@ function showInfo() {
   infoScreen.classList.remove('animate__animated', 'animate__fadeOutUp');
   infoScreen.classList.add('animate__animated', 'animate__fadeInDown');
   infoScreen.classList.remove('hidden');
+  activescreen = infoScreen;
 }
 
 function hideInterview() {
@@ -44,6 +47,7 @@ function showInterview() {
   interviewScreen.classList.remove('animate__animated', 'animate__fadeOutDown');
   interviewScreen.classList.add('animate__animated', 'animate__fadeInUp');
   interviewScreen.classList.remove('hidden');
+  activescreen = interviewScreen;
 }
 
 playButton.addEventListener('click', () => {
@@ -79,7 +83,16 @@ userInfoButton.addEventListener('click', () => {
 logout.addEventListener('click', () => {
   document.querySelector('.goodbye').classList.remove('hidden');
   localStorage.removeItem('userID');
-  document.getElementById('main-page').classList.add('animate__animated', 'animate__hinge');
+  activescreen.classList.add('animate__animated', 'animate__hinge');
+  if (activescreen !== mainScreen) {
+    const actions = document.getElementById('actions');
+    const moreActions = document.getElementById('more-actions');
+    actions.classList.remove('animate__animated', 'animate__fadeInRight');
+    moreActions.classList.remove('animate__animated', 'animate__fadeInRight');
+    actions.classList.add('animate__animated', 'animate__fadeOutRight');
+    moreActions.classList.add('animate__animated', 'animate__fadeOutRight');
+  }
+
 });
 
 // Function to fetch and display data

@@ -56,7 +56,6 @@
                 <div class="login-signup accordian">
                   <button id="signup" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#accordian1" aria-controls="panelsStayOpen-collapseOne"class="login-button accordian-header">Sign up</button>
                   <button type="submit" id="submit">Log in</button>
-
                 </div>
                 <div class="form-check form-check-reverse flex-end">
                   <input class="form-check-input" type="checkbox" value="" id="remember-me">
@@ -168,7 +167,11 @@
           <div class="info-panel" id="info-panel">
             <h1 class="display-6 text-center">Welcome to <span class="no-wrap">M<i class="fa-brands fa-superpowers"  style="color: #74C0FC;"></i>CK</span></h1> 
             <p class="center-blue">interview practice buddy</p>
-            <br>
+            <div class="row">
+              <div class="col-12">
+                <div class="divider"></div>
+              </div>
+            </div> 
             Mock has been developed to help you prepare and gain confidence for interviews. 
             You can generate questions, save them, and even mock interview yourself.
             <br>
@@ -178,7 +181,11 @@
             <br>
             The more details your provide, the better Mock works so please fill in the details section at the end of this form.
             <br>
-            <br>
+            <div class="row">
+              <div class="col-12">
+                <div class="divider"></div>
+              </div>
+            </div> 
             These are the functions Mock provides:
             <br>
             <br>
@@ -233,10 +240,44 @@
                   </p>
                 </div>
               </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="divider"></div>
+              </div>
             </div> 
+
+            <h1 class="display-6 text-center">Job search details</h1>
+            <br>
+            <form id="details-form" class="info-form">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Job Title</span>
+                <input type="text" class="form-control" name="job-title">
+              </div>
+              <br>
+              <select class="form-select" name="experience">
+                <option selected>How much experience do you have?</option>
+                <option value="0">None</option>
+                <option value="1">Less than 1 year</option>
+                <option value="2">Less than 2 years</option>
+                <option value="5">Less than 5 years</option>
+                <option value="10">Lots!</option>
+              </select>
+              <br>
+              <button type="submit" id="submit-details">Submit</button>
+              <div class="form-check form-check-reverse flex-end">
+                <input class="form-check-input" type="checkbox" value="" id="remember-details">
+                <label class="form-check-label" for="remember-details" name="save">
+                  Remember these details
+                </label>
+              </div>
+              <br>
+            </form>
           </div>
         </div>
+        </div>
       </div>
+
     </div>
   </div>
 

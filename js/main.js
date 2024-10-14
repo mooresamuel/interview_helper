@@ -9,6 +9,7 @@ const userQuestionsWindow = document.getElementById('user-questions-window');
 const questionLibraryWindow = document.getElementById('question-library-window');
 const actions = document.getElementById('actions');
 const moreActions = document.getElementById('more-actions');
+const submitDetails = document.getElementById('submit-details');
 
 export function updateQuestions() {
     console.log("user questiosn: ", userQuestions);
@@ -71,3 +72,28 @@ export async function loginSuccess () {
     await get_data();
     updateQuestions();
 }
+
+submitDetails.addEventListener('click', async (e) => {
+    console.log('submit detalis', e);
+    e.preventDefault();
+    const detailsForm = document.getElementById('details-form');
+    // console.log('form:', detailsForm.elements);
+    if (detailsForm) {
+        const jobTitleElement = detailsForm.elements['job-title'];
+        const experienceElement = detailsForm.elements['experience'];
+        const rememberMeElement = detailsForm.elements['remember-me'];
+
+        // Check if each element exists and has a value
+        const jobTitle = jobTitleElement ? jobTitleElement.value : '';
+        const experience = experienceElement ? experienceElement.value : '';
+        const rememberMe = rememberMeElement ? rememberMeElement.checked : false;
+
+        console.log('Job Title:', jobTitle);
+        console.log('Experience:', experience);
+        console.log('Remember Me:', rememberMe);
+
+        // You can now use these values as needed, e.g., send them to a server
+    } else {
+        console.error('Form not found');
+    }
+});

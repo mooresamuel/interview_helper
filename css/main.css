@@ -115,16 +115,27 @@
 .center-blue {
     text-align: center;
     color: #215dce;
+    margin-bottom: -2%;
 }
 
 .bg-shadow {
 
-    box-shadow: 0 0 5px 0 rgba(0, 0, 55, 0.5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 205, 0.3);
     padding: 2%;
     padding-left: 5%;
     z-index: 1000;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .no-wrap {
     white-space: nowrap;
+}
+
+.divider {
+    display: flex;
+    height: 1px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 205, 0.5);
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
