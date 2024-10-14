@@ -23,9 +23,11 @@ export function addUserQuestion(newQuestion) {  ///user master password 1 to add
     .then(data => {
         console.log(data);
         userQuestions.push({          
-          question: newQuestion,
+          question_text: newQuestion,
           user_id: userID});
-          updateQuestions();
+    })
+    .then(() => {
+      updateQuestions();
     })
     .catch(error => {
         console.error('Error:', error);
