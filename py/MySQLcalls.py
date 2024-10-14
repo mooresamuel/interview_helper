@@ -1,6 +1,6 @@
 import mysql.connector
 import json
-from flask import request, jsonify
+from flask import jsonify
 import pandas as pd
 
 class MySQLCalls:
@@ -65,11 +65,65 @@ class MySQLCalls:
         cursor.close()
         conn.close()
 
+    def move_into_user_questions(self, data):
+        try:
+            question_id = data.get('question_id')
+            user_id = data.get('user_id')
+
+            if not question_id or not user_id:
+                return jsonify({'error': 'Missing question_id or user_id parameter'}), 400
+
+            conn = mysql.connector.connect(**self.db_config)
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT INTO user_questions (user_id, question_id)
+                VALUES (%s, %s)
+            """, (user_id, question_id))
+
+            conn.commit()
+            cursor.close()
+            conn.close()
+            return jsonify({'message': 'Question saved successfully', 'question_id': question_id}), 200
+        except mysql.connector.Error as err:
+            print(f"MySQL Error: {err}") 
+            return jsonify({'error': 'Internal Server Error'}), 500
+        except Exception as e:
+            print(f"Error: {e}") 
+            return jsonify({'error': 'Internal Server Error'}), 500
+
+    def move_out_of_user_questions(self, data):
+        try:
+            question_id = data.get('question_id')
+            user_id = data.get('user_id')
+
+            if not question_id or not user_id:
+                return jsonify({'error': 'Missing question_id or user_id parameter'}), 400
+
+            conn = mysql.connector.connect(**self.db_config)
+            cursor = conn.cursor()
+            cursor.execute("""
+                DELETE FROM user_questions
+                WHERE user_id = %s AND question_id = %s
+            """, (user_id, question_id))
+
+            conn.commit()
+            cursor.close()
+            conn.close()
+            return jsonify({'message': 'Question removed successfully', 'question_id': question_id}), 200
+        except mysql.connector.Error as err:
+            print(f"MySQL Error: {err}")  
+            return jsonify({'error': 'Internal Server Error'}), 500
+        except Exception as e:
+            print(f"Error: {e}") 
+            return jsonify({'error': 'Internal Server Error'}), 500
+
     def save_question(self, data):
         try:
             question_text = data.get('question')
+            user_id = data.get('user_id')
             if not question_text:
                 return jsonify({'error': 'Missing question_text parameter'}), 400
+
 
             conn = mysql.connector.connect(**self.db_config)
             cursor = conn.cursor()
@@ -78,14 +132,20 @@ class MySQLCalls:
                 VALUES (%s)
             """, (question_text,))
             question_id = cursor.lastrowid
+
+            cursor.execute("""
+                INSERT INTO user_questions (user_id, question_id)
+                VALUES (%s, %s)
+            """, (user_id, question_id))
+
             conn.commit()
             cursor.close()
             conn.close()
             return jsonify({'message': 'Question saved successfully', 'question_id': question_id}), 200
         except Exception as e:
-            print(f"Error: {e}")  # Print the error to the server logs
+            print(f"Error: {e}") 
             return jsonify({'error': 'Internal Server Error'}), 500
-        
+
     def save_user_question(self, data):
         try:
             question_text = data.get('question')
@@ -100,19 +160,18 @@ class MySQLCalls:
                 VALUES (%s)
             """, (question_text,))
             question_id = cursor.lastrowid
-            
-        # Insert the question_id and user_id into the user_questions table
+
             cursor.execute("""
                 INSERT INTO user_questions (user_id, question_id)
                 VALUES (%s, %s)
             """, (user_id, question_id))
-                
+
             conn.commit()
             cursor.close()
             conn.close()
             return jsonify({'message': 'Question saved successfully', 'question_id': question_id}), 200
         except Exception as e:
-            print(f"Error: {e}")  # Print the error to the server logs
+            print(f"Error: {e}")
             return jsonify({'error': 'Internal Server Error'}), 500
 
     def save_answer(self, question_id: int, answer_text: str, score: int):
@@ -135,7 +194,7 @@ class MySQLCalls:
                 SELECT q.*
                 FROM questions q
                 LEFT JOIN user_questions uq ON q.question_id = uq.question_id
-                WHERE uq.user_id = 0
+                WHERE uq.user_id = 5
                 AND q.question_id NOT IN (
                     SELECT question_id
                     FROM user_questions
@@ -177,12 +236,13 @@ class MySQLCalls:
                 if existing_user[2] == email:
                     return jsonify({'error': 'Email already exists'}), 400
             cursor.execute("INSERT INTO users (username, password, email) VALUES (%s, %s, %s)", (username, password, email))
+            user_id = cursor.lastrowid
             conn.commit()
             cursor.close()
             conn.close()
-            return jsonify({'message': 'User registered successfully'}), 200
+            return jsonify({'message': 'User registered successfully', 'user_id': user_id}), 200
         except Exception as e:
-            print(f"Error: {e}")  # Print the error to the server logs
+            print(f"Error: {e}") 
             return jsonify({'error': 'Internal Server Error'}), 500
 
     def login(self, data):

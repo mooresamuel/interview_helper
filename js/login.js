@@ -54,6 +54,8 @@ async function createUser() {
           title: 'Success',
           text: result.message,
         });
+        userID = result.user_id;
+        console.log('userID:', userID);
         loginSuccess();
       } else {
         Swal.fire({

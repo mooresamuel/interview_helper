@@ -3,7 +3,6 @@ from flask_cors import CORS
 from MySQLcalls import MySQLCalls
 from transcribe import transcribe_audio
 import json
-import  os
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
@@ -14,20 +13,30 @@ def hello_world():
     return 'Hello, World!'
 
 db_config = {
-    'database': os.getenv('DB_NAME', 'default_db_name'),
-    'user': os.getenv('DB_USER', 'default_user'),
-    'password': os.getenv('DB_PASSWORD', 'default_password'),
-    'host': os.getenv('DB_HOST', 'default_host')
+    'database': 'samalmoore1$sqlite',
+    'user': 'samalmoore1',
+    'password': 'redDog123!!!',
+    'host': 'samalmoore1.mysql.eu.pythonanywhere-services.com'
 }
-
 db = MySQLCalls(db_config)
 
 @app.route('/transcribe', methods=['POST'])
 def transcribe():
     return transcribe_audio()
 
+@app.route('/move_into_user_questions', methods=['POST'])
+def move_into_user_questions():
+    data = request.get_json()
+    return db.move_into_user_questions(data)
+
+
+@app.route('/move_out_of_user_questions', methods=['POST'])
+def move_out_of_user_questions():
+    data = request.get_json()
+    return db.move_out_of_user_questions(data)
+
 @app.route('/save_question', methods=['POST'])
-def add_question():
+def save_question():
     data = request.get_json()
     return db.save_question(data)
 

@@ -16,7 +16,7 @@ export function updateQuestions() {
     if (userQuestions && userQuestions.length > 0) {
         userQuestionsWindow.innerHTML = '';
     } else {
-        userQuestionsWindow.innerHTML = '<p>No questions added yet, transfer some from the Library!</p>';
+        userQuestionsWindow.innerHTML = '<p>No questions added yet, move some from the Library!</p>';
     }
     if (questionLibrary && questionLibrary.length > 0) {
         questionLibraryWindow.innerHTML = '';

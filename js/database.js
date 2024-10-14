@@ -6,29 +6,8 @@ export let questionLibrary = [];
 
 let numberOfQuestiosn = 0;
 
-export function addQuestion(newQuestion) {
-
-    fetch('https://samalmoore1.eu.pythonanywhere.com/save_question', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            question: newQuestion
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log(data);
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      });
-}
-
-export function addUserQuestion(newQuestion) {
-
+export function addUserQuestion(newQuestion) {  ///user master password 1 to add questions
+  console.log("userID: ", userID);
   fetch('https://samalmoore1.eu.pythonanywhere.com/add_user_question', {
       method: 'POST',
       headers: {
@@ -46,6 +25,56 @@ export function addUserQuestion(newQuestion) {
         userQuestions.push({          
           question: newQuestion,
           user_id: userID});
+          updateQuestions();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+export function moveIntoUserQuestions(id) {  ///user master password 1 to add questions
+  console.log("userID: ", userID);
+  fetch('https://samalmoore1.eu.pythonanywhere.com/move_into_user_questions', {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          question_id: id,
+          user_id: userID
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        userQuestions.push(questionLibrary.find(question => String(question.question_id) === String(id)));
+        questionLibrary = questionLibrary.filter(question => String(question.question_id) !== String(id));
+          updateQuestions();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+export function moveOutOfUserQuestions(id) {
+  console.log("userID: ", userID);
+  fetch('https://samalmoore1.eu.pythonanywhere.com/move_out_of_user_questions', {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          question_id: id,
+          user_id: userID
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        questionLibrary.push(userQuestions.find(question => String(question.question_id) === String(id)));
+        userQuestions = userQuestions.filter(question => String(question.question_id) !== String(id));
           updateQuestions();
     })
     .catch(error => {
