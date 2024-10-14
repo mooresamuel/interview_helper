@@ -1,40 +1,28 @@
-import os
-import json
-
-import pandas as pd
-import numpy as np
-
-from dotenv import load_dotenv
-from sqlite_calls import SQLiteCalls
-from anthropic_calls import AnthropicCalls
-from sklearn.metrics.pairwise import cosine_similarity
-
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from MySQLcalls import MySQLCalls
+from transcribe import transcribe_audio
+import json
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
-db = SQLiteCalls()
 
-# @app.route('/generate_questions', methods=['POST'])
-# def generate_questions():
-#     data = request.get_json()
-#     return gen_questions(data)
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
-# def gen_questions(data):
-#     job_title = data['job_title']
-#     experience = data['experience']
+db_config = {
+    'database': 'samalmoore1$sqlite',
+    'user': 'samalmoore1',
+    'password': 'redDog123!!!',
+    'host': 'samalmoore1.mysql.eu.pythonanywhere-services.com'
+}
+db = MySQLCalls(db_config)
 
-@app.route('/test')
-def test():
-    return "Test successful!"
-
-
-# @app.route('/transcribe', methods=['POST'])
-# def transcribe():
-#     return transcribe_audio()
+@app.route('/transcribe', methods=['POST'])
+def transcribe():
+    return transcribe_audio()
 
 @app.route('/move_into_user_questions', methods=['POST'])
 def move_into_user_questions():
@@ -85,6 +73,5 @@ def login():
     data = request.get_json()
     return db.login(data)
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8001, debug=True)
+    app.run(debug=True)

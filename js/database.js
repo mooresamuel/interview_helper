@@ -4,11 +4,13 @@ import { updateQuestions } from "./main.js";
 export let userQuestions = [];
 export let questionLibrary = [];
 
-let numberOfQuestiosn = 0;
+
+// export const source = 'https://samalmoore1.eu.pythonanywhere.export com/';
+export const source = 'http://127.0.0.1:8001/'
 
 export function addUserQuestion(newQuestion) {  ///user master password 1 to add questions
   console.log("userID: ", userID);
-  fetch('https://samalmoore1.eu.pythonanywhere.com/add_user_question', {
+  fetch(`${source}/add_user_question`, {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -21,11 +23,14 @@ export function addUserQuestion(newQuestion) {  ///user master password 1 to add
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        console.log("data  ",data);
         userQuestions.push({          
-          question: newQuestion,
+          question_text: newQuestion,
+          question_id: data.question_id,
           user_id: userID});
-          updateQuestions();
+    })
+    .then(() => {
+        updateQuestions();
     })
     .catch(error => {
         console.error('Error:', error);
@@ -34,7 +39,7 @@ export function addUserQuestion(newQuestion) {  ///user master password 1 to add
 
 export function moveIntoUserQuestions(id) {  ///user master password 1 to add questions
   console.log("userID: ", userID);
-  fetch('https://samalmoore1.eu.pythonanywhere.com/move_into_user_questions', {
+  fetch(`${source}/move_into_user_questions`, {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -59,7 +64,7 @@ export function moveIntoUserQuestions(id) {  ///user master password 1 to add qu
 
 export function moveOutOfUserQuestions(id) {
   console.log("userID: ", userID);
-  fetch('https://samalmoore1.eu.pythonanywhere.com/move_out_of_user_questions', {
+  fetch(`${source}/move_out_of_user_questions`, {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -107,7 +112,7 @@ export function removeLibraryQuestion(questionID) {
 }
 
 export function save_data() {
-fetch('https://samalmoore1.eu.pythonanywhere.com/save_question', {
+fetch(`${source}/save_question`, {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -128,7 +133,7 @@ fetch('https://samalmoore1.eu.pythonanywhere.com/save_question', {
   
 export async function get_data() {
     try {
-      const response = await fetch(`https://samalmoore1.eu.pythonanywhere.com/get_questions?user_id=${userID}`, {
+      const response = await fetch(`${source}/get_questions?user_id=${userID}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json'
@@ -148,7 +153,7 @@ export async function get_data() {
 
   export async function get_user_questions() {
     try {
-      const response = await fetch(`https://samalmoore1.eu.pythonanywhere.com/get_user_questions?user_id=${userID}`, {
+      const response = await fetch(`${source}/get_user_questions?user_id=${userID}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json'

@@ -1,4 +1,5 @@
 import { loginSuccess } from './main.js';
+import { source } from './database.js';
 
 const loginForm = document.getElementById('loginForm');
 const loginBtn = document.getElementById('submit');
@@ -8,6 +9,7 @@ const confirmPassword = document.getElementById('confirm-password');
 
 export let userID;
 let register = false;
+
 
 const savedUserID = localStorage.getItem('userID');
 const rememberMe = document.getElementById('remember-me');
@@ -47,7 +49,7 @@ async function createUser() {
           });      return;
     } 
     try {
-      const response = await fetch('https://samalmoore1.eu.pythonanywhere.com/save_user', {
+      const response = await fetch(`${source}save_user`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -94,7 +96,7 @@ async function createUser() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     try {
-      const response = await fetch('https://samalmoore1.eu.pythonanywhere.com/login', {
+      const response = await fetch(`${source}login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

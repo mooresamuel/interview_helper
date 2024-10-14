@@ -110,6 +110,8 @@
     position: relative;
     left: 55%;
     width: 45%;
+    margin-top: 8%;
+    margin-bottom: 6%;
     padding: 2% 6% 2% 6%;
     background: linear-gradient(160deg, #4e87f9, #47a8f7, #4e87f9);
     border: none;
