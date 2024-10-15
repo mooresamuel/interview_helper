@@ -1,12 +1,16 @@
-import { get_data, get_user_questions } from "./database.js";
+import { load_questions } from "./database.js";
 import { userID } from "./login.js";
-import { userQuestions, questionLibrary } from "./database.js";
+import { userQuestions, questionLibrary, generatedQuestions } from "./database.js";
+
+export let jobTitle = '';
+export let experience = '';
 
 const loginWidget = document.getElementById('login-widget');
 const loginPage = document.getElementById('login-page');
 const mainScreen = document.getElementById('main-screen');
 const userQuestionsWindow = document.getElementById('user-questions-window');
 const questionLibraryWindow = document.getElementById('question-library-window');
+const generatedQuestionsWindow = document.getElementById('generated-questions-window');
 const actions = document.getElementById('actions');
 const moreActions = document.getElementById('more-actions');
 const submitDetails = document.getElementById('submit-details');
@@ -22,7 +26,12 @@ export function updateQuestions() {
     if (questionLibrary && questionLibrary.length > 0) {
         questionLibraryWindow.innerHTML = '';
     } else {
-        questionLibraryWindow.innerHTML = '<p>No questions available in the Library, ask the assitant to generate some!</p>';}
+        questionLibraryWindow.innerHTML = '<p>No questions available in the Library, ask the assitant to generate some!</p>';
+    }
+    if (generatedQuestions && generatedQuestions.length > 0) {
+        generatedQuestionsWindow.innerHTML = '';
+    } else {
+        generatedQuestionsWindow.innerHTML = '<p>No questions here yet, click on the generate button to add questions!</p>';}
     for (const question of userQuestions) {
         console.log("question: ", question.question_text);
 
@@ -35,6 +44,14 @@ export function updateQuestions() {
         console.log("question: ", question.question_text);
 
         questionLibraryWindow.innerHTML += `
+            <input type="checkbox" class="btn-check" id="${question.question_id}" autocomplete="off">
+            <label class="btn butt" for="${question.question_id}">${question.question_text}</label>        
+            `;
+    }
+    for (const question of generatedQuestions) {
+        console.log("question: ", question.question_text);
+
+        generatedQuestionsWindow.innerHTML += `
             <input type="checkbox" class="btn-check" id="${question.question_id}" autocomplete="off">
             <label class="btn butt" for="${question.question_id}">${question.question_text}</label>        
             `;
@@ -68,8 +85,7 @@ export async function loginSuccess () {
         loginPage.style.display = 'none';
 
     });
-    await get_user_questions();
-    await get_data();
+    await load_questions();
     updateQuestions();
 }
 
@@ -84,8 +100,8 @@ submitDetails.addEventListener('click', async (e) => {
         const rememberMeElement = detailsForm.elements['remember-me'];
 
         // Check if each element exists and has a value
-        const jobTitle = jobTitleElement ? jobTitleElement.value : '';
-        const experience = experienceElement ? experienceElement.value : '';
+        jobTitle = jobTitleElement ? jobTitleElement.value : '';
+        experience = experienceElement ? experienceElement.value : '';
         const rememberMe = rememberMeElement ? rememberMeElement.checked : false;
 
         console.log('Job Title:', jobTitle);

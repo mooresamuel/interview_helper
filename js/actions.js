@@ -1,6 +1,7 @@
-import { addUserQuestion, moveIntoUserQuestions, moveOutOfUserQuestions } from "./database.js";
-import { updateQuestions } from "./main.js";
-import { userQuestions, questionLibrary } from "./database.js";
+import { addUserQuestion, assignQuestion, unassignQuestion } from "./database.js";
+import { updateQuestions, experience, jobTitle } from "./main.js";
+import { source, userQuestions, questionLibrary } from "./database.js";
+import { userID } from "./login.js";
 
 const generateQuestions = document.getElementById('generate-questions');
 const deleteQuestions = document.getElementById('delete-questions');
@@ -20,6 +21,29 @@ customQuestion.addEventListener('click', () => {
     }
 });
 
+generateQuestions.addEventListener('click', () => {
+    fetch(`${source}generate_questions`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user_id: userID,
+            job_title: jobTitle,
+            experience: experience
+        })
+    })
+    .then(() => {
+        updateQuestions();
+        console.log("update questions");
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+
 
 transferQuestions.addEventListener('click', () => {
     const libraryButtons = questionLibraryWindow.querySelectorAll('.btn-check');
@@ -28,9 +52,17 @@ transferQuestions.addEventListener('click', () => {
     libraryButtons.forEach(button => {
         if (button.checked) {
             console.log(button);
-            moveIntoUserQuestions(button.id);
+            assignQuestion(button.id);
             // removeLibraryQuestion(button.id);
             // updateQuestions();
+            matched++;
+        }
+    });
+    const generatedButtons = generatedQuestionsWindow.querySelectorAll('.btn-check');
+    generatedButtons.forEach(button => {
+        if (button.checked) {
+            console.log(button);
+            assignQuestion(button.id, 'generated');
             matched++;
         }
     });
@@ -38,7 +70,7 @@ transferQuestions.addEventListener('click', () => {
     userButtons.forEach(button => {
         if (button.checked) {
             console.log(button);
-            moveOutOfUserQuestions(button.id);
+            unassignQuestion(button.id);
             // removeLibraryQuestion(button.id);
             // updateQuestions();
             matched++;

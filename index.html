@@ -28,8 +28,8 @@
     <div class="login-page" id="login-page">
       <div class="container">
         <div class="row">
-          <div class="col-1 col-md-2 col-lg-4"></div>
-          <div class="col-10 col-md-8 col-lg-4">
+          <div class="col-1 col-md-2 col-lg-3"></div>
+          <div class="col-10 col-md-8 col-lg-6">
             <div class="login-widget animate__animated animate__fadeInDown" id="login-widget">
               <form id="loginForm" class="login-form">
                 <div class="logo">
@@ -37,11 +37,11 @@
                 </div>
                 <div class="username-input">
                   <i class="fa-regular fa-user login-icon"></i>
-                  <input type="text" id="username" name="username" placeholder="username" required>
+                  <input type="text" id="username" name="username" placeholder="username" autocomplete="username" required>
                 </div>
                 <div class="password-input">
                   <i class="fa-solid fa-fingerprint login-icon"></i>
-                  <input type="password" id="password" name="password" placeholder="password" required>
+                  <input type="password" id="password" name="password" placeholder="password" autocomplete="current-password" required>
                 </div>
                 <div id="accordian1" class="accordion-collapse collapse">
                   <div id="accordian2" class="confirm-password-input">
@@ -50,7 +50,7 @@
                   </div>
                   <div class="email-input">
                     <i class="fa-solid fa-at login-icon"></i>
-                    <input type="email" id="email" name="email" placeholder="email" disabled="true" required>
+                    <input type="email" id="email" name="email" placeholder="email" disabled="true" autocomplete="email" required>
                   </div>
                 </div>
                 <div class="login-signup accordian">
@@ -77,8 +77,8 @@
   <div class="actions hidden" id="actions">
     <div class="container">
       <div class="row">
-        <div class=" col-md-1 col-lg-2"></div>
-        <div class="col-12 col-md-10 col-lg-8">
+        <div class=" col-lg-1"></div>
+        <div class="col-12 col-md-12 col-lg-10">
           <div class="action-buttons">
             <button id="logout"><i class="fa-solid fa-arrow-right-from-bracket fa-2xl"></i><p></p></button>
             <button id="custom-question"><i class="fa-solid fa-plus fa-2xl"></i><p></p></button>
@@ -92,10 +92,10 @@
   <div class="more-actions hidden" id="more-actions">
     <div class="container">
       <div class="row">
-        <div class=" col-md-1 col-lg-2"></div>
-        <div class="col-12 col-md-10 col-lg-8">
+        <div class=" col-lg-1"></div>
+        <div class="col-12 col-md-12 col-lg-10">
           <div class="action-buttons">
-            <button id="generete-questions"><i class="fa-solid fa-brain fa-2xl"></i><p></p></button>
+            <button id="generate-questions"><i class="fa-solid fa-brain fa-2xl"></i><p></p></button>
             <button id="transfer-questions"><i class="fa-solid fa-right-left fa-2xl"></i><p></p></button>
             <button id="play"><i class="fa-solid fa-play fa-2xl"></i><p></p></button>
           </div>
@@ -107,8 +107,8 @@
   <div class="main-screen hidden" id="main-screen">
     <div class="container">
       <div class="row">
-        <div class="col-1 col-md-2 col-lg-4"></div>
-        <div class="col-10 col-md-8 col-lg-4">
+        <div class="col-1 col-md-2 col-lg-3"></div>
+        <div class="col-10 col-md-8 col-lg-6">
           <div class="question-box">
             <div class="accordion" id="question-accordian">
               <div class="accordion-item">
@@ -162,8 +162,8 @@
   <div class="info-screen hidden" id="info-screen">
     <div class="container">
       <div class="row">
-        <div class="col-1 col-md-2 col-lg-4"></div>
-        <div class="col-10 col-md-8 col-lg-4">
+        <div class="col-1 col-md-2 col-lg-3"></div>
+        <div class="col-10 col-md-8 col-lg-6">
           <div class="info-panel" id="info-panel">
             <h1 class="display-6 text-center">Welcome to <span class="no-wrap">M<i class="fa-brands fa-superpowers"  style="color: #74C0FC;"></i>CK</span></h1> 
             <p class="center-blue">interview practice buddy</p>
@@ -179,7 +179,10 @@
             Practicing for interviews can be awkward and uncomfortable, but is vitally important to making a good impression. With Mock, you can practice in the comfort and privacy of your own home.
             <br>
             <br>
-            The more details your provide, the better Mock works so please fill in the details section at the end of this form.
+            To get started, simply move some questions from the common quetions tab into your saved quetions and press play! You can also add custom questions directly to your saved questions or generate questions and select some to save.
+            <br>
+            <br>
+            Mock works better if it has some information about you and the job you're applying for so please fill in the details section at the end of this form.
             <br>
             <div class="row">
               <div class="col-12">
@@ -246,8 +249,10 @@
                 <div class="divider"></div>
               </div>
             </div> 
-
+            <br>
             <h1 class="display-6 text-center">Job search details</h1>
+            <br>
+            <br>
             <br>
             <form id="details-form" class="info-form">
               <div class="input-group mb-3">
@@ -284,8 +289,8 @@
   <div class="interview-screen hidden" id="interview-screen">
     <div class="container">
       <div class="row">
-        <div class="col-1 col-md-2 col-lg-4"></div>
-        <div class="col-10 col-md-8 col-lg-4">
+        <div class="col-1 col-md-2 col-lg-3"></div>
+        <div class="col-10 col-md-8 col-lg-6">
           <div class="interview-panel" id="interview-panel">
             
           </div>
