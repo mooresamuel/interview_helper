@@ -6,8 +6,8 @@ export let questionLibrary = [];
 export let generatedQuestions = [];
 
 
-// export const source = 'https://samalmoore1.eu.pythonanywhere.export com/';
-export const source = 'http://127.0.0.1:8001/'
+export const source = 'https://samalmoore1.eu.pythonanywhere.com/';
+// export const source = 'http://127.0.0.1:8001/'
 
 
 export async function addGeneratedQuestions(questions) {
