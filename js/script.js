@@ -79,38 +79,13 @@ userInfoButton.addEventListener('click', () => {
 });
 
 logout.addEventListener('click', () => {
+  const actions = document.getElementById('actions');
+  const moreActions = document.getElementById('more-actions');
   document.querySelector('.goodbye').classList.remove('hidden');
   localStorage.removeItem('userID');
   activescreen.classList.add('animate__animated', 'animate__hinge');
-  if (activescreen !== mainScreen) {
-    const actions = document.getElementById('actions');
-    const moreActions = document.getElementById('more-actions');
-    actions.classList.remove('animate__animated', 'animate__fadeInRight');
-    moreActions.classList.remove('animate__animated', 'animate__fadeInRight');
-    actions.classList.add('animate__animated', 'animate__fadeOutRight');
-    moreActions.classList.add('animate__animated', 'animate__fadeOutRight');
-  }
-
+  actions.classList.remove('animate__animated', 'animate__fadeInRight');
+  moreActions.classList.remove('animate__animated', 'animate__fadeInRight');
+  actions.classList.add('animate__animated', 'animate__fadeOutRight');
+  moreActions.classList.add('animate__animated', 'animate__fadeOutRight');
 });
-
-
-// Call the function to fetch and display data
-// await fetchAndDisplayData();
-
-
-// document.addEventListener('DOMContentLoaded', (event) => {
-//     const checkboxes = document.querySelectorAll('.butt.btn-check');
-
-//     checkboxes.forEach(checkbox => {
-//         checkbox.addEventListener('change', (e) => {
-//             const label = document.querySelector(`label[for="${checkbox.id}"]`);
-//             if (checkbox.checked) {
-//                 // Add your logic here when the checkbox is checked
-//                 label.classList.add('checked'); // Example: add a class
-//             } else {
-//                 // Add your logic here when the checkbox is unchecked
-//                 label.classList.remove('checked'); // Example: remove a class
-//             }
-//         });
-//     });
-// });

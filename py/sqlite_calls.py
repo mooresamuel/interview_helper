@@ -143,7 +143,7 @@ class SQLiteCalls:
             conn.commit()
             cursor.close()
             conn.close()
-            return jsonify({'message': 'Question saved successfully', 'question_id': question_id}), 200
+            return ({'question_text': question_text, 'question_id': question_id}), 200
         except Exception as e:
             print(f"Error: {e}") 
             return jsonify({'error': 'Internal Server Error'}), 500
@@ -324,6 +324,7 @@ class SQLiteCalls:
 
         questions = generate_questions_claude(user_questions, data)
         print('\n\n',questions,'\n\n\n')
+        return_vals = []
         for question in questions:
             obj = {
                 "question_text": question['question_text'],
@@ -332,6 +333,6 @@ class SQLiteCalls:
                 'is_common': False
             }
             print('\nquestion:', obj, '\n')
-            self.save_question(obj)
+            return_vals.append(self.save_question(obj))
             # print(question)
-        return questions
+        return return_vals

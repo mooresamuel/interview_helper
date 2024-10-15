@@ -98,7 +98,7 @@ def login():
 def generate_questions():
     data = request.get_json()
     result = db.generate_questions(data)
-    return jsonify(result)
+    return result
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8001, debug=True)

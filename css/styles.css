@@ -51,3 +51,24 @@ body {
     overflow-y: none;
     z-index: 0;
 }
+
+#spinner-page {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    /* display: flex; */
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 5000;
+    align-items: center;
+    justify-content: center;
+}
+
+.top {
+    display: flex;
+    color: blue;
+    z-index: 5001;
+    position: absolute;
+    display: block;
+}

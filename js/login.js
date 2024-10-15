@@ -15,7 +15,6 @@ const savedUserID = localStorage.getItem('userID');
 const rememberMe = document.getElementById('remember-me');
 
 if (rememberMe.checked || savedUserID) {
-    console.log('checkbox', rememberMe);
       userID = savedUserID;
       loginSuccess();
 }
@@ -65,7 +64,6 @@ async function createUser() {
           text: "Welcome to Mock! Please check out the information section for details on how the app works and to customize your search.",
         });
         userID = result.user_id;
-        console.log('userID:', userID);
         if (rememberMe.checked) {
           localStorage.setItem('userID', userID);
         }
@@ -108,7 +106,6 @@ async function createUser() {
       if (response.ok) {
 
         userID = result.id;
-        console.log('userID:', userID);
         if (rememberMe.checked) {
           localStorage.setItem('userID', userID);
         }

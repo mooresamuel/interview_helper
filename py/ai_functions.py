@@ -19,13 +19,13 @@ LLM_calls = AnthropicCalls(api_key=ANTHROPIC_API_KEY, stream=True)
 generate_questions_call = AnthropicCalls(
     api_key=ANTHROPIC_API_KEY, 
     max_tokens=1024,
-    system_prompt="You are a helpful assistant that is helping the user to paractice for an interview. You will generate 2 questions to help them practice their interview skills.\n"
+    system_prompt="You are a helpful assistant that is helping the user to paractice for an interview. You will generate 2 questions to help them practice their interview skills. If the user has very little experience, please focus on questions that will explore how they will tackle scenarios that are new to them but also relevant to the position. Don't mention exactly how many years of experience they have as these are rouugh figures (especially if the user has 10 years experience). YOU MUST USE THE TOOL PROVIDED FOR YOUR REPLIES\n"
 )
 
 def generated_questions(query: str):
     generator_tool = {
         "name": "save_interview_questions",
-        "description": "Save each question as a separate JSON object.",
+        "description": "Provides interview questions in JSON format when the user asks for interview questions.",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -87,9 +87,11 @@ def generated_questions(query: str):
 def generate_questions_claude(user_questions, data):
     experience = data.get('experience')
     job_title = data.get('job_title')
+    job_str = f"The user is applying for a position as a {job_title}" if job_title else ""
+    exp_str = f"The user has {experience} years of experience" if experience else ""
     user_questions_list = user_questions.to_dict(orient='records')
     u_qs = [question["question_text"] for question in user_questions_list]
-    message = f"Please generate 2 job interview questions for the user. The user is applying for a position as a {job_title} and has roughly {experience} years of experience. The user already has some questions to work from so please make your suggestions not too similar to theirs. Their saved questions are: {u_qs} "
+    message = f"Please generate 2 job interview questions for the user. {job_str} {exp_str}. The user already has some questions to work from so please make your suggestions not too similar to theirs. Their saved questions are: {u_qs}. IT IS IMPORTANT THAT YOU USE THE TOOL PROVIDED! "
 
     new_questions = generated_questions(message)
     print('\n\n',new_questions,'\n\n')
